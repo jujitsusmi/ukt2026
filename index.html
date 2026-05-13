@@ -5,15 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pendaftaran UKT IJI Sukabumi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body { background-color: #f8f9fa; padding: 20px; }
-        .form-container { max-width: 700px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .header-logo { text-align: center; margin-bottom: 20px; }
-        .pernyataan { background: #fff3cd; padding: 15px; border-radius: 5px; font-size: 0.9rem; border-left: 5px solid #ffc107; }
-        #resumeSection { display: none; }
-        .resume-item { border-bottom: 1px solid #eee; padding: 8px 0; }
-        .resume-label { font-weight: bold; width: 200px; display: inline-block; }
-    </style>
+<style>
+    body { 
+        margin: 0;
+        padding: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    /* Background Image dengan Transparansi */
+    body::before {
+        content: "";
+        position: fixed; /* Agar gambar tetap di posisi saat scroll */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* GANTI URL DI BAWAH DENGAN LINK GAMBAR ANDA */
+        background-image: url('https://images.unsplash.com/photo-1555597673-b21d5c935865?q=80&w=2072'); 
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.2; /* Tingkat transparansi (0.1 - 1.0) */
+        z-index: -1; /* Meletakkan gambar di belakang konten */
+    }
+
+    .form-container { 
+        max-width: 700px; 
+        margin: auto; 
+        background: rgba(255, 255, 255, 0.95); /* Putih sedikit transparan agar menyatu */
+        padding: 30px; 
+        border-radius: 15px; 
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        position: relative;
+        z-index: 1;
+    }
+
+    .header-logo { text-align: center; margin-bottom: 20px; }
+    .pernyataan { background: #fff3cd; padding: 15px; border-radius: 5px; font-size: 0.9rem; border-left: 5px solid #ffc107; }
+    #resumeSection { display: none; }
+    .resume-item { border-bottom: 1px solid #eee; padding: 8px 0; }
+    .resume-label { font-weight: bold; width: 180px; display: inline-block; }
+</style>
 </head>
 <body>
 
@@ -95,10 +131,12 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Upload Pasfoto 3x4 (Atribut Gi Lengkap, Latar Merah)</label>
-            <input type="file" name="foto" class="form-control" accept="image/*" required>
+    <label class="form-label">Upload Pasfoto 3x4 <span class="text-muted">(Opsional)</span></label>
+    <input type="file" id="fotoInput" name="foto" class="form-control" accept="image/jpeg, image/png">
+    <div class="form-text">Gunakan seragam Gi beratribut lengkap dengan latar merah.</div>
         </div>
 
+      
         <div class="pernyataan mb-4">
             <strong>Pernyataan Pendaftaran UKT IJI:</strong><br>
             Dengan ini mendaftarkan diri dalam Ujian Kenaikan Tingkat (UKT) Institut Ju-jitsu Indonesia, yang diadakan oleh Dewan Pelatih dan Pengurus IJI Sukabumi pada tanggal 17 Mei 2026, serta sanggup dan patuh terhadap ketentuan yang diatur oleh organisasi Institut Ju-jitsu Indonesia dengan senantiasa berpegang teguh kepada Sumpah dan Semboyan Institut Ju-jitsu Indonesia.
@@ -151,8 +189,17 @@
             foto: "File Foto"
         };
 
+ 
         for (let [key, value] of formData.entries()) {
-            let displayValue = value instanceof File ? value.name : value;
+            let displayValue;
+        
+            if (value instanceof File) {
+                // Jika file ada, tampilkan namanya. Jika tidak ada, tampilkan strip atau pesan.
+                displayValue = value.name !== "" ? value.name : "<span class='text-muted'>Tidak mengunggah foto</span>";
+            } else {
+                displayValue = value;
+            }
+        
             html += `<div class="resume-item"><span class="resume-label">${labels[key]}:</span> ${displayValue}</div>`;
         }
 
