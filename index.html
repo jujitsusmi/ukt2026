@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran UKT IJI Sukabumi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; padding: 20px; }
+        .form-container { max-width: 700px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .header-logo { text-align: center; margin-bottom: 20px; }
+        .pernyataan { background: #fff3cd; padding: 15px; border-radius: 5px; font-size: 0.9rem; border-left: 5px solid #ffc107; }
+        #resumeSection { display: none; }
+        .resume-item { border-bottom: 1px solid #eee; padding: 8px 0; }
+        .resume-label { font-weight: bold; width: 200px; display: inline-block; }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <div class="header-logo">
+        <h3>Formulir Pendaftaran UKT</h3>
+        <h5>Institut Ju-jitsu Indonesia (IJI)</h5>
+        <p class="text-muted">Wilayah Sukabumi</p>
+    </div>
+
+    <!-- SEKSI INPUT FORM -->
+    <form id="uktForm">
+        <div class="mb-3">
+            <label class="form-label">Nama Lengkap (Huruf Kapital)</label>
+            <input type="text" name="nama" class="form-control text-uppercase" required>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Tempat Lahir</label>
+                <input type="text" name="tempat_lahir" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Tanggal Lahir</label>
+                <input type="date" name="tgl_lahir" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Alamat Lengkap Rumah Tinggal</label>
+            <textarea name="alamat" class="form-control" rows="2" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Jenis Kelamin</label>
+            <select name="jk" class="form-select" required>
+                <option value="">-- Pilih --</option>
+                <option value="Laki-laki">Laki-laki</option>
+                <option value="Perempuan">Perempuan</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Tingkatan Ujian</label>
+            <select name="tingkatan" class="form-select" required>
+                <option value="">-- Pilih Tingkatan --</option>
+                <option value="Putih ke Kuning">Putih ke Kuning</option>
+                <option value="Kuning ke Hijau">Kuning ke Hijau</option>
+                <option value="Hijau ke Orange">Hijau ke Orange</option>
+                <option value="Orange ke Biru">Orange ke Biru</option>
+                <option value="Biru ke Coklat">Biru ke Coklat</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Nomor WA (Aktif)</label>
+            <input type="tel" name="wa" class="form-control" placeholder="0812..." required>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Nama Dojo</label>
+                <input type="text" name="dojo" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Asal Dojo</label>
+                <select name="asal_dojo" class="form-select" required>
+                    <option value="">-- Pilih Wilayah --</option>
+                    <option value="Kabupaten Sukabumi">Kabupaten Sukabumi</option>
+                    <option value="Kota Sukabumi">Kota Sukabumi</option>
+                    <option value="Lainnya">Lainnya</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Nama Pelatih</label>
+            <input type="text" name="pelatih" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Upload Pasfoto 3x4 (Atribut Gi Lengkap, Latar Merah)</label>
+            <input type="file" name="foto" class="form-control" accept="image/*" required>
+        </div>
+
+        <div class="pernyataan mb-4">
+            <strong>Pernyataan Pendaftaran UKT IJI:</strong><br>
+            Dengan ini mendaftarkan diri dalam Ujian Kenaikan Tingkat (UKT) Institut Ju-jitsu Indonesia, yang diadakan oleh Dewan Pelatih dan Pengurus IJI Sukabumi pada tanggal 17 Mei 2026, serta sanggup dan patuh terhadap ketentuan yang diatur oleh organisasi Institut Ju-jitsu Indonesia dengan senantiasa berpegang teguh kepada Sumpah dan Semboyan Institut Ju-jitsu Indonesia.
+        </div>
+
+        <button type="button" onclick="showResume()" class="btn btn-primary w-100">Lanjut</button>
+    </form>
+
+    <!-- SEKSI RESUME (AWALNYA TERSEMBUNYI) -->
+    <div id="resumeSection">
+        <h4 class="mb-4">Resume Data Diri</h4>
+        <div id="resumeContent" class="mb-4">
+            <!-- Data akan diisi via JS -->
+        </div>
+
+        <p class="fw-bold">Apakah data yang anda masukan sudah benar?</p>
+        <div class="d-flex gap-2">
+            <button type="button" onclick="backToForm()" class="btn btn-outline-secondary flex-fill">Belum Yakin (Cek Kembali)</button>
+            <button type="button" onclick="submitToAppScript()" class="btn btn-success flex-fill">Ya (Kirim Data)</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('uktForm');
+    const resumeSection = document.getElementById('resumeSection');
+    const resumeContent = document.getElementById('resumeContent');
+
+    function showResume() {
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
+        const formData = new FormData(form);
+        let html = "";
+        
+        // Daftar label untuk resume
+        const labels = {
+            nama: "Nama Lengkap",
+            tempat_lahir: "Tempat Lahir",
+            tgl_lahir: "Tanggal Lahir",
+            alamat: "Alamat",
+            jk: "Jenis Kelamin",
+            tingkatan: "Tingkatan",
+            wa: "Nomor WA",
+            dojo: "Nama Dojo",
+            asal_dojo: "Asal Dojo",
+            pelatih: "Nama Pelatih",
+            foto: "File Foto"
+        };
+
+        for (let [key, value] of formData.entries()) {
+            let displayValue = value instanceof File ? value.name : value;
+            html += `<div class="resume-item"><span class="resume-label">${labels[key]}:</span> ${displayValue}</div>`;
+        }
+
+        resumeContent.innerHTML = html;
+        form.style.display = "none";
+        resumeSection.style.display = "block";
+        window.scrollTo(0,0);
+    }
+
+    function backToForm() {
+        resumeSection.style.display = "none";
+        form.style.display = "block";
+    }
+
+    function submitToAppScript() {
+        alert("Fungsi kirim ke Google Sheets (AppScript) dipicu! Pastikan URL Web App sudah dikonfigurasi.");
+        // Di sini nantinya Anda menggunakan fetch() ke URL Web App Google AppScript Anda
+    }
+</script>
+
+</body>
+</html>
