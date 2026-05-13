@@ -55,8 +55,8 @@
 
 <div class="form-container">
     <div class="header-logo">
-        <h3>PENDAFTARAN UKT IJI</h3>
-        <h5>Institut Ju-jitsu Indonesia (IJI)</h5>
+        <h3>Pendaftaran UKT</h3>
+        <h5>INSTITUT JUJITSU INDONESIA (IJI)</h5>
         <p class="text-muted"> Sukabumi Raya</p>
     </div>
 
@@ -215,9 +215,27 @@
     }
 
     function submitToAppScript() {
-        alert("Fungsi kirim ke Google Sheets (AppScript) dipicu! Pastikan URL Web App sudah dikonfigurasi.");
-        // Di sini nantinya Anda menggunakan fetch() ke URL Web App Google AppScript Anda
-    }
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwgyJJjlvEYOiYJHgYUgllvOo9N-x8HEcPXL1jp6YGbj1OOk50PkN9DavdvHHWeXQ8o/exec'; // Ganti ini!
+    const btnKirim = event.target;
+    
+    btnKirim.disabled = true;
+    btnKirim.innerHTML = "Sedang Mengirim...";
+
+    // Mengambil data dari form asli
+    const formData = new FormData(document.getElementById('uktForm'));
+    
+    fetch(scriptURL, { method: 'POST', body: formData })
+      .then(response => {
+          alert("Data berhasil terkirim ke sistem IJI Sukabumi!");
+          window.location.reload(); // Segarkan halaman setelah berhasil
+      })
+      .catch(error => {
+          alert("Terjadi kesalahan saat mengirim data.");
+          btnKirim.disabled = false;
+          btnKirim.innerHTML = "Ya (Kirim Data)";
+          console.error('Error!', error.message);
+      });
+}
 </script>
 
 </body>
