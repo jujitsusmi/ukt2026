@@ -3,122 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> PENDAFTARAN UKT IJI SUKABUMI RAYA</title>
+    <title>PENDAFTARAN UKT IJI SUKABUMI RAYA</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<style>
-    body { 
-        margin: 0;
-        padding: 20px;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        position: relative;
-    }
+    <style>
+        body { 
+            margin: 0;
+            padding: 15px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
 
-    /* Background Image dengan Transparansi */
-    body::before {
-        content: "";
-        position: fixed; /* Agar gambar tetap di posisi saat scroll */
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        /* GANTI URL DI BAWAH DENGAN LINK GAMBAR ANDA */
-        background-image: url('https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTAuBlGU07aQU_hYnNY6ar-zX4BJ071UriwKxSvpFU3vTTUmQmvX_CxQ6ZY85D2A2DU9E26S7tqXIp6WMY'); 
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        opacity: 0.2; /* Tingkat transparansi (0.1 - 1.0) */
-        z-index: -1; /* Meletakkan gambar di belakang konten */
-    }
+        /* Latar Belakang Transparan */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTAuBlGU07aQU_hYnNY6ar-zX4BJ071UriwKxSvpFU3vTTUmQmvX_CxQ6ZY85D2A2DU9E26S7tqXIp6WMY'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.15;
+            z-index: -1;
+        }
 
-    .form-container { 
-        max-width: 700px; 
-        margin: auto; 
-        background: rgba(255, 255, 255, 0.95); /* Putih sedikit transparan agar menyatu */
-        padding: 30px; 
-        border-radius: 15px; 
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        position: relative;
-        z-index: 1;
-    }
+        .form-container { 
+            width: 100%;
+            max-width: 600px; 
+            margin: auto; 
+            background: rgba(255, 255, 255, 0.96);
+            padding: 25px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
 
-    .header-logo { text-align: center; margin-bottom: 20px; }
-    .pernyataan { background: #fff3cd; padding: 15px; border-radius: 5px; font-size: 0.9rem; border-left: 5px solid #ffc107; }
-    #resumeSection { display: none; }
-    .resume-item { border-bottom: 1px solid #eee; padding: 8px 0; }
-    .resume-label { font-weight: bold; width: 180px; display: inline-block; }
-</style>
+        .header-logo { text-align: center; margin-bottom: 15px; }
+        .header-logo h2 { font-size: 1.4rem; font-weight: bold; margin-bottom: 0; color: #333; }
+        .header-logo h3 { font-size: 1.1rem; color: #555; }
+
+        .pernyataan { 
+            background: #fff3cd; 
+            padding: 12px; 
+            border-radius: 8px; 
+            font-size: 0.8rem; 
+            border-left: 5px solid #ffc107; 
+            line-height: 1.4;
+            color: #664d03;
+        }
+
+        /* --- STYLING RESUME --- */
+        #resumeSection { display: none; }
+        
+        .resume-item { 
+            border-bottom: 1px solid #eee; 
+            padding: 4px 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .resume-label { 
+            font-weight: bold; 
+            width: 130px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .resume-value {
+            font-size: 0.85rem;
+            flex: 1;
+            min-width: 150px;
+            color: #000;
+        }
+
+        /* RESPONSIVE HP */
+        @media (max-width: 576px) {
+            body { padding: 10px; }
+            .form-container { padding: 15px; border-radius: 10px; }
+            
+            .resume-label { 
+                width: 100%; 
+                font-size: 0.7rem; 
+                text-transform: uppercase;
+                margin-bottom: -2px;
+            }
+            
+            .resume-value { 
+                font-size: 0.85rem; 
+                width: 100%;
+                margin-bottom: 2px;
+            }
+
+            .btn { padding: 10px; font-size: 0.9rem; }
+        }
+    </style>
 </head>
 <body>
 
 <div class="form-container">
     <div class="header-logo">
-        <h3>Pendaftaran UKT</h3>
-        <h5>INSTITUT JUJITSU INDONESIA (IJI)</h5>
-        <p class="text-muted"> Sukabumi Raya</p>
+        <h2>PENDAFTARAN</h2>
+        <h3>UKT IJI SUKABUMI RAYA</h3>
     </div>
 
-    <!-- SEKSI INPUT FORM -->
+    <!-- FORM INPUT -->
     <form id="uktForm">
-        <div class="mb-3">
-            <label class="form-label">Nama Lengkap</label>
-            <input type="text" name="nama" class="form-control text-uppercase" required>
+        <div class="mb-2">
+            <label class="form-label small fw-bold">Nama Lengkap</label>
+            <input type="text" name="nama" class="form-control form-control-sm text-uppercase" required>
         </div>
 
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Tempat Lahir</label>
-                <input type="text" name="tempat_lahir" class="form-control" required>
+        <div class="row g-2">
+            <div class="col-6 mb-2">
+                <label class="form-label small fw-bold">Tempat Lahir</label>
+                <input type="text" name="tempat_lahir" class="form-control form-control-sm" required>
             </div>
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Tanggal Lahir</label>
-                <input type="date" name="tgl_lahir" class="form-control" required>
+            <div class="col-6 mb-2">
+                <label class="form-label small fw-bold">Tgl Lahir</label>
+                <input type="date" name="tgl_lahir" class="form-control form-control-sm" required>
             </div>
         </div>
 
-        <div class="mb-3">
-            <label class="form-label">Alamat Lengkap Rumah Tinggal</label>
-            <textarea name="alamat" class="form-control" rows="2" required></textarea>
+        <div class="mb-2">
+            <label class="form-label small fw-bold">Alamat Rumah</label>
+            <textarea name="alamat" class="form-control form-control-sm" rows="2" required></textarea>
         </div>
 
-        <div class="mb-3">
-            <label class="form-label">Jenis Kelamin</label>
-            <select name="jk" class="form-select" required>
-                <option value="">-- Pilih --</option>
-                <option value="Laki-laki">Laki-laki</option>
-                <option value="Perempuan">Perempuan</option>
-            </select>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Tingkatan Ujian</label>
-            <select name="tingkatan" class="form-select" required>
-                <option value="">-- Pilih Tingkatan --</option>
-                <option value="Putih ke Kuning">Putih ke Kuning</option>
-                <option value="Kuning ke Hijau">Kuning ke Hijau</option>
-                <option value="Hijau ke Orange">Hijau ke Orange</option>
-                <option value="Orange ke Biru">Orange ke Biru</option>
-                <option value="Biru ke Coklat">Biru ke Coklat</option>
-            </select>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Nomor WA (Aktif)</label>
-            <input type="tel" name="wa" class="form-control" placeholder="0812..." required>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Nama Dojo</label>
-                <input type="text" name="dojo" class="form-control" required>
+        <div class="row g-2">
+            <div class="col-6 mb-2">
+                <label class="form-label small fw-bold">Jenis Kelamin</label>
+                <select name="jk" class="form-select form-select-sm" required>
+                    <option value="">- Pilih -</option>
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                </select>
             </div>
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Asal Dojo</label>
-                <select name="asal_dojo" class="form-select" required>
-                    <option value="">-- Pilih Wilayah --</option>
-                    <option value="Kabupaten Sukabumi">Kabupaten Sukabumi</option>
+            <div class="col-6 mb-2">
+                <label class="form-label small fw-bold">Tingkatan</label>
+                <select name="tingkatan" class="form-select form-select-sm" required>
+                    <option value="">- Pilih -</option>
+                    <option value="Putih ke Kuning">Putih ke Kuning</option>
+                    <option value="Kuning ke Hijau">Kuning ke Hijau</option>
+                    <option value="Hijau ke Orange">Hijau ke Orange</option>
+                    <option value="Orange ke Biru">Orange ke Biru</option>
+                    <option value="Biru ke Coklat">Biru ke Coklat</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-2">
+            <label class="form-label small fw-bold">Nomor WA</label>
+            <input type="tel" name="wa" class="form-control form-control-sm" placeholder="08..." required>
+        </div>
+
+        <div class="row g-2">
+            <div class="col-6 mb-2">
+                <label class="form-label small fw-bold">Nama Dojo</label>
+                <input type="text" name="dojo" class="form-control form-control-sm" required>
+            </div>
+            <div class="col-6 mb-2">
+                <label class="form-label small fw-bold">Asal Dojo</label>
+                <select name="asal_dojo" class="form-select form-select-sm" required>
+                    <option value="">- Pilih -</option>
+                    <option value="Kabupaten Sukabumi">Kab. Sukabumi</option>
                     <option value="Kota Sukabumi">Kota Sukabumi</option>
                     <option value="Lainnya">Lainnya</option>
                 </select>
@@ -126,36 +179,26 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Nama Pelatih</label>
-            <input type="text" name="pelatih" class="form-control" required>
+            <label class="form-label small fw-bold">Nama Pelatih</label>
+            <input type="text" name="pelatih" class="form-control form-control-sm" required>
         </div>
 
-        <div class="mb-3">
-    <label class="form-label">Upload Pasfoto 3x4 <span class="text-muted">(Opsional)</span></label>
-    <input type="file" id="fotoInput" name="foto" class="form-control" accept="image/jpeg, image/png">
-    <div class="form-text">Gunakan seragam Gi beratribut lengkap dengan latar merah.</div>
+        <div class="pernyataan mb-3">
+            <strong>Pernyataan:</strong> Mendaftarkan diri dalam UKT IJI Sukabumi pada 17 Mei 2026, sanggup patuh terhadap ketentuan organisasi & berpegang teguh pada Sumpah IJI.
         </div>
 
-      
-        <div class="pernyataan mb-4">
-            <strong>Pernyataan Pendaftaran UKT IJI:</strong><br>
-            Dengan ini mendaftarkan diri dalam Ujian Kenaikan Tingkat (UKT) Institut Ju-jitsu Indonesia, yang diadakan oleh Dewan Pelatih dan Pengurus IJI Sukabumi pada tanggal 17 Mei 2026, serta sanggup dan patuh terhadap ketentuan yang diatur oleh organisasi Institut Ju-jitsu Indonesia dengan senantiasa berpegang teguh kepada Sumpah dan Semboyan Institut Ju-jitsu Indonesia.
-        </div>
-
-        <button type="button" onclick="showResume()" class="btn btn-primary w-100">Lanjut</button>
+        <button type="button" onclick="showResume()" class="btn btn-primary w-100 shadow-sm">Lanjut</button>
     </form>
 
-    <!-- SEKSI RESUME (AWALNYA TERSEMBUNYI) -->
+    <!-- RESUME -->
     <div id="resumeSection">
-        <h4 class="mb-4">Resume Data Diri</h4>
-        <div id="resumeContent" class="mb-4">
-            <!-- Data akan diisi via JS -->
-        </div>
+        <h5 class="mb-3 border-bottom pb-2">Konfirmasi Data</h5>
+        <div id="resumeContent" class="mb-3"></div>
 
-        <p class="fw-bold">Apakah data yang anda masukan sudah benar?</p>
-        <div class="d-flex gap-2">
-            <button type="button" onclick="backToForm()" class="btn btn-outline-secondary flex-fill">Belum Yakin (Cek Kembali)</button>
-            <button type="button" onclick="submitToAppScript()" class="btn btn-success flex-fill">Ya (Kirim Data)</button>
+        <p class="text-center mb-3" style="font-size: 0.85rem;">Apakah data Anda sudah benar?</p>
+        <div class="d-grid gap-2">
+            <button type="button" id="btnFinalKirim" onclick="submitToAppScript()" class="btn btn-success shadow-sm">Ya (Kirim Data)</button>
+            <button type="button" onclick="backToForm()" class="btn btn-link btn-sm text-secondary decoration-none">Belum Yakin (Edit)</button>
         </div>
     </div>
 </div>
@@ -174,33 +217,27 @@
         const formData = new FormData(form);
         let html = "";
         
-        // Daftar label untuk resume
         const labels = {
             nama: "Nama Lengkap",
             tempat_lahir: "Tempat Lahir",
-            tgl_lahir: "Tanggal Lahir",
+            tgl_lahir: "Tgl Lahir",
             alamat: "Alamat",
             jk: "Jenis Kelamin",
             tingkatan: "Tingkatan",
             wa: "Nomor WA",
-            dojo: "Nama Dojo",
+            dojo: "Dojo",
             asal_dojo: "Asal Dojo",
-            pelatih: "Nama Pelatih",
-            foto: "File Foto"
+            pelatih: "Pelatih"
         };
 
- 
         for (let [key, value] of formData.entries()) {
-            let displayValue;
-        
-            if (value instanceof File) {
-                // Jika file ada, tampilkan namanya. Jika tidak ada, tampilkan strip atau pesan.
-                displayValue = value.name !== "" ? value.name : "<span class='text-muted'>Tidak mengunggah foto</span>";
-            } else {
-                displayValue = value;
+            if (labels[key]) {
+                html += `
+                <div class="resume-item">
+                    <div class="resume-label">${labels[key]}</div>
+                    <div class="resume-value">${value}</div>
+                </div>`;
             }
-        
-            html += `<div class="resume-item"><span class="resume-label">${labels[key]}:</span> ${displayValue}</div>`;
         }
 
         resumeContent.innerHTML = html;
@@ -215,27 +252,25 @@
     }
 
     function submitToAppScript() {
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwgyJJjlvEYOiYJHgYUgllvOo9N-x8HEcPXL1jp6YGbj1OOk50PkN9DavdvHHWeXQ8o/exec'; // Ganti ini!
-    const btnKirim = event.target;
-    
-    btnKirim.disabled = true;
-    btnKirim.innerHTML = "Sedang Mengirim...";
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwgyJJjlvEYOiYJHgYUgllvOo9N-x8HEcPXL1jp6YGbj1OOk50PkN9DavdvHHWeXQ8o/exec';
+        const btn = document.getElementById('btnFinalKirim');
+        
+        btn.disabled = true;
+        btn.innerHTML = "Sedang Mengirim...";
 
-    // Mengambil data dari form asli
-    const formData = new FormData(document.getElementById('uktForm'));
-    
-    fetch(scriptURL, { method: 'POST', body: formData })
-      .then(response => {
-          alert("Data berhasil terkirim ke sistem IJI Sukabumi!");
-          window.location.reload(); // Segarkan halaman setelah berhasil
-      })
-      .catch(error => {
-          alert("Terjadi kesalahan saat mengirim data.");
-          btnKirim.disabled = false;
-          btnKirim.innerHTML = "Ya (Kirim Data)";
-          console.error('Error!', error.message);
-      });
-}
+        const formData = new FormData(form);
+        
+        fetch(scriptURL, { method: 'POST', body: formData })
+          .then(response => {
+              alert("Data berhasil terkirim ke sistem IJI Sukabumi!");
+              window.location.reload();
+          })
+          .catch(error => {
+              alert("Gagal mengirim data. Coba lagi.");
+              btn.disabled = false;
+              btn.innerHTML = "Ya (Kirim Data)";
+          });
+    }
 </script>
 
 </body>
